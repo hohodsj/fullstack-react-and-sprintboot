@@ -4,7 +4,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 import org.springframework.data.rest.webmvc.config.RepositoryRestConfigurer;
 import org.springframework.http.HttpMethod;
-import org.springframework.web.servlet.config.annotation.CorsRegistration;
 import org.springframework.web.servlet.config.annotation.CorsRegistry;
 
 import com.luv2code.spring_boot_library.entity.Book;
@@ -17,9 +16,7 @@ public class MyDataRestConfig implements RepositoryRestConfigurer {
     public void configureRepositoryRestConfiguration(RepositoryRestConfiguration config, CorsRegistry cors) {
         HttpMethod[] theUnsupportedActions = { HttpMethod.POST, HttpMethod.PATCH, HttpMethod.DELETE, HttpMethod.PUT };
         config.exposeIdsFor(Book.class);
-        System.out.println();
         disableHttpMethods(Book.class, config, theUnsupportedActions);
-
         /* Configure CORS Mapping */
         cors.addMapping(config.getBasePath() + "/**")
         .allowedOrigins(theAllowedOrigins);

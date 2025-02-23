@@ -17,10 +17,10 @@ RUN chmod +x mvnw
 RUN ./mvnw dependency:go-offline
 
 # Copy the source code (excluding the target directory)
-COPY src /app/src
+# COPY src /app/src
 
 # Expose the port 8080 for the Spring Boot app
 EXPOSE 8080
 
 # Run the Spring Boot app with the Maven wrapper, and enable devtools for auto-reloading
-CMD ["./mvnw", "spring-boot:run"]
+CMD ["./mvnw", "spring-boot:run", "-Dspring.devtools.restart.enabled=true"]

@@ -3,6 +3,7 @@ version: "3"
 services:
   frontend:
     build: ./03-frontend/react-library
+    container_name: frontend
     ports:
       - '3000:3000'
     volumes:
@@ -13,15 +14,19 @@ services:
   
   backend:
     build: ./02-backend/spring-boot-library
+    container_name: backend
     ports:
       - '8080:8080'
     volumes:
       - ./02-backend/spring-boot-library/src:/app/src
       - ./02-backend/spring-boot-library/pom.xml:/app/pom.xml
+      - ./02-backend/spring-boot-library/.mvn:/app/.mvn
+      - ./02-backend/spring-boot-library/mvnw:/app/mvnw
     # network_mode: "host"
-    command: ["./mvnw", "spring-boot:run"]
+    command: ["./mvnw", "spring-boot:run", "-Dspring.devtools.restart.enabled=true"]
     depends_on:
       - db
+    restart: always
 
   # Database
   db:
