@@ -1,6 +1,28 @@
 version: "3"
 
 services:
+  frontend:
+    build: ./03-frontend/react-library
+    ports:
+      - '3000:3000'
+    volumes:
+      - ./03-frontend/react-library:/app
+    command: npm start
+    depends_on:
+      - backend
+  
+  backend:
+    build: ./02-backend/spring-boot-library
+    ports:
+      - '8080:8080'
+    volumes:
+      - ./02-backend/spring-boot-library/src:/app/src
+      - ./02-backend/spring-boot-library/pom.xml:/app/pom.xml
+    # network_mode: "host"
+    command: ["./mvnw", "spring-boot:run"]
+    depends_on:
+      - db
+
   # Database
   db:
     platform: linux/x86_64
@@ -10,12 +32,12 @@ services:
     restart: always
     ports:
       - "3306:3306"
+    expose:
+      - "3306"
     environment:
       MYSQL_ROOT_PASSWORD: password
       MYSQL_DATABASE: springboot
       MYSQL_PASSWORD: password
-    networks:
-      - mysql-phpmyadmin
 
   # phpmyadmin
   # localhost:8090 username root 
@@ -29,8 +51,3 @@ services:
     environment:
       PMA_HOST: db
       MYSQL_ROOT_PASSWORD: password
-    networks:
-      - mysql-phpmyadmin
-
-networks:
-  mysql-phpmyadmin:
