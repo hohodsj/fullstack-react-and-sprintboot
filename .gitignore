@@ -1,0 +1,5 @@
+# Ignore macOS system files
+**/.DS_Store
+
+# Ignore db_data directory
+section11-react-front-end-home-page/db_data/
