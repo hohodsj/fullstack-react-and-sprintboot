@@ -9,21 +9,23 @@ import { Redirect, Route, Switch } from "react-router-dom";
 // github: https://github.com/darbyluv2code/fullstack-react-and-springboot/tree/main/source-code/fullstack-library-app
 export const App = () => {
     return (
-        <div>
+        <div className="d-flex flex-column min-vh-100">
             <Navbar />
-            <Switch>
-                <Route path="/" exact>
-                    <Redirect to='/home' />
-                </Route>
-                
-                <Route path="/home">
-                    <HomePage />
-                </Route>
+            <div className="flex-grow-1">
+                <Switch>
+                    <Route path="/" exact>
+                        <Redirect to="/home" />
+                    </Route>
 
-                <Route path="/search">
-                    <SearchBooksPage />
-                </Route>
-            </Switch>
+                    <Route path="/home">
+                        <HomePage />
+                    </Route>
+
+                    <Route path="/search">
+                        <SearchBooksPage />
+                    </Route>
+                </Switch>
+            </div>
             <Footer />
         </div>
     );
