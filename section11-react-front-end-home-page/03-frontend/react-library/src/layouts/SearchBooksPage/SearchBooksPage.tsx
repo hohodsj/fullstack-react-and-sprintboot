@@ -3,6 +3,7 @@ import BookModel from "../../models/BookModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
 import { SearchBook } from "./components/SearchBook";
 import { Pagination } from "../Utils/Pagination";
+import React from "react";
 
 export const SearchBooksPage = () => {
     const [books, setBooks] = useState<BookModel[]>([]);
@@ -93,7 +94,7 @@ export const SearchBooksPage = () => {
     const categoryField = (value: string) => {
         setCurrentPage(1);
         const lowerValue = value.toLowerCase();
-        if(lowerValue === 'fe' || lowerValue === 'be' || lowerValue == 'data' || lowerValue == 'devops') {
+        if(lowerValue === 'fe' || lowerValue === 'be' || lowerValue === 'data' || lowerValue === 'devops') {
             setCategorySelection(value);
             setSearchUrl(`/search/findByCategory?category=${value}&page=<pageNumber>&size=${booksPerPage}`)
         } else {

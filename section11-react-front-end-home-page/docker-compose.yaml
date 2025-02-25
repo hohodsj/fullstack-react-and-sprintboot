@@ -8,9 +8,9 @@ services:
       - '3000:3000'
     volumes:
       - ./03-frontend/react-library:/app
+    environment:
+      - NODE_OPTIONS=--openssl-legacy-provider
     command: npm start
-    depends_on:
-      - backend
   
   backend:
     build: ./02-backend/spring-boot-library
