@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import BookModel from "../../models/BookModel";
 import { SpinnerLoading } from "../Utils/SpinnerLoading";
+import { StarsReview } from "../Utils/StarsReview";
 
 export const BookCheckoutPage = () => {
 
@@ -55,6 +56,7 @@ export const BookCheckoutPage = () => {
 
     return (
         <div>
+            {/* Desktop View */}
             <div className="container d-none d-lg-block">
                 <div className='row mt-5'>
                     <div className="col-sm-2 col-md-2">
@@ -69,11 +71,13 @@ export const BookCheckoutPage = () => {
                             <h2>{book?.title}</h2>
                             <h5 className="text-primary">{book?.author}</h5>
                             <p className="lead">{book?.description}</p>
+                            <StarsReview rating={4.5} size={32}/>
                         </div>
                     </div>
                 </div>
                 <hr/>
             </div>
+            {/* Mobile View */}
             <div className="container d-lg-none mt-5">
                 <div className="d-flex justify-content-center align-items-center">
                     {book?.img ?
@@ -87,6 +91,7 @@ export const BookCheckoutPage = () => {
                         <h2>{book?.title}</h2>
                         <h5 className="text-primary">{book?.author}</h5>
                         <p className="lead">{book?.description}</p>
+                        <StarsReview rating={4.5} size={32}/>
                     </div>
                 </div>
             </div>
