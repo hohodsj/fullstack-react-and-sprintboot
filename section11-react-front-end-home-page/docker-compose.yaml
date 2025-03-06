@@ -11,6 +11,8 @@ services:
     environment:
       - NODE_OPTIONS=--openssl-legacy-provider
     command: npm start
+    expose:
+      - "3000"
   
   backend:
     build: ./02-backend/spring-boot-library
